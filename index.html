@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>para dani </title>
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: black;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
+
+    .button {
+      padding: 15px 30px;
+      background-color: orange;
+      color: black;
+      font-size: 1.5rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: gray;
+      color: white;
+    }
+
+    .heart {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0) rotate(0);
+      width: 150px;
+      height: 150px;
+      background-color: orange;
+      display: block;
+      animation: zoomIn 1s ease forwards, spin 1s ease;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      background-color: orange;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -75px;
+      left: 0;
+    }
+
+    .heart::after {
+      top: 0;
+      left: 75px;
+    }
+
+    .message {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      color: white;
+      font-size: 4rem;
+      text-align: center;
+      display: block;
+      animation: messageZoomIn 1s ease forwards;
+    }
+
+    @keyframes zoomIn {
+      0% {
+        transform: translate(-50%, -50%) scale(0);
+      }
+      100% {
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
+
+    @keyframes spin {
+      0% {
+        transform: translate(-50%, -50%) rotate(0);
+      }
+      100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+      }
+    }
+
+    @keyframes messageZoomIn {
+      0% {
+        transform: translate(-50%, -50%) scale(0);
+      }
+      100% {
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
+
+    .heart.stopped {
+      transform: translate(-50%, -50%) scale(1) rotate(0);
+      animation: none;
+    }
+  </style>
+</head>
+<body>
+  <button class="button" onclick="showHeart()">Presióname</button>
+  <div class="heart" id="heart" style="display: none;"></div>
+  <div class="message" id="message" style="display: none;">Te amo mi atún</div>
+
+  <script>
+    function showHeart() {
+      const button = document.querySelector('.button');
+      const heart = document.getElementById('heart');
+      const message = document.getElementById('message');
+
+      button.style.display = 'none';
+      heart.style.display = 'block';
+
+      setTimeout(() => {
+        heart.classList.add('stopped');
+        message.style.display = 'block';
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
